@@ -14,9 +14,32 @@
         <br>
         <h1 id="title-h1">Cadastrar</h1>
         <hr>
-        <!-- Utilizar essa parte para os status de cadastro -->
+        {% if messages %}
+        <ul>
+            {% for message in messages %}
+                <li {% if message.tags %} class="alert {{message.tags}}" {% endif %}>{{message}}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
         <div id="form-cadastrar">
-            <!-- Pensar em um design para o form -->
+            <form action="{% url 'cadastrar' %}" method="POST" id="form-cadastro">
+                {% csrf_token %}
+                <p class="box-complete">
+                    <label>Nome:</label>
+                    <input type="text" name="nome" id="nome" placeholder="Digite seu nome:">
+                </p>
+                <p class="box-complete">
+                    <label>Email:</label>
+                    <input type="email" name="email" id="email" placeholder="Digite seu E-mail:">
+                </p>
+                <p class="box-complete">
+                    <label>Senha:</label>
+                    <input type="password" name="senha" id="senha" placeholder="Digite sua senha:">
+                </p>
+                <input type="submit" value="Registrar">
+            </form>
+            <br>
+            Ja possui conta? <a href="{% url 'login' %}" class="btn btn-primary">Login</a>
         </div>
     </div>
 {% endblock %}
