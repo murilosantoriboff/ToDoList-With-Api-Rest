@@ -1,0 +1,39 @@
+{% extends 'base_auth.html' %}
+{% load static %}
+
+{% block titulo %}Login{% endblock %}
+
+{% block content_head%}
+    <link rel="stylesheet" href="{% static 'users/css/login.css' %}">
+{% endblock %}
+
+{% block content_body %}
+    <div class="container">
+        <br>
+        <h1 id="title-h1">Login</h1>
+        <hr>
+        {% if messages %}
+        <ul>
+            {% for message in messages %}
+                <li {% if message.tags %} class="alert {{message.tags}}" {% endif %}>{{message}}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        <div id="form-logar">
+            <form action="{% url 'login' %}" method="POST" id="form-login">
+                {% csrf_token %}
+                <p class="box-complete">
+                    <label>Nome:</label>
+                    <input type="text" name="nome" id="nome" placeholder="Digite seu nome:">
+                </p>
+                <p class="box-complete">
+                    <label>Senha:</label>
+                    <input type="password" name="senha" id="senha" placeholder="Digite sua senha:">
+                </p>
+                <input type="submit" value="Login">
+            </form>
+            <br>
+            Não possui conta? <a href="{% url 'cadastrar' %}" class="btn btn-primary">Cadastrar</a>
+        </div>
+    </div>
+{% endblock %}
