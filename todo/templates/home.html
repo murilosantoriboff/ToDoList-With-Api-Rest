@@ -11,6 +11,43 @@
 
 {% block content_body %}
     <div class="container">
-        
+        <br>
+        <h1>Tarefas a fazer</h1>
+        <hr>
+        <a href="#" class="btn btn-success">Criar Tarefa</a>
+        <a href="#" class="btn btn-primary">Acessar API</a>
+        <br>
+        <table class="table table-striped" id="table-todo">
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Nome da Tarefa</th>
+                    <th scope="col">Data</th>
+                    <th scope="col">Está Feita?</th>
+                    <th scope="col">Ver Detalhes</th>
+                    <th scope="col">Atualizar</th>
+                    <th scope="col">Excluir</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                <th scope="row">1</th>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td>@mdo</td>
+                </tr>
+                <tr>
+                    <th scope="row">2</th>
+                    <td>Jacob</td>
+                    <td>Thornton</td>
+                    <td>@fat</td>
+                </tr>
+                <tr>
+                    <th scope="row">3</th>
+                    <td colspan="2">Larry the Bird</td>
+                    <td>@twitter</td>
+                </tr>
+            </tbody>
+          </table>
     </div>
 {% endblock %}
