@@ -4,5 +4,5 @@ from django.http import HttpResponse
 
 @login_required(login_url='/auth/login/')
 def home(request):
-    # Renderizar a base.html e ver se o botao de sair está tudo certo
+    # Mandar para home os dados da model Tarefa
     return render(request, 'home.html')
