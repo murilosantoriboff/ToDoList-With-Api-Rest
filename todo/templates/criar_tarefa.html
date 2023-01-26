@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block titulo %}
+    Criar tarefa
+{% endblock %}
+
+{% block content_head %}
+    <link rel="stylesheet" href="{% static 'todo/css/criar_tarefa.css' %}">
+{% endblock %}
+
+{% block content_body %}
+    <div class="container">
+        <br>
+        <h1>Criar Tarefa</h1>
+        <hr>
+        <form action="{% url 'criar_tarefa' %}">
+            {% csrf_token %}
+            
+            <br>
+            <input type="submit" value="Criar Tarefa" class="btn btn-success">
+        </form>
+    </div>
+{% endblock %}

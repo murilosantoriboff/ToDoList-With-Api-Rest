@@ -5,3 +5,11 @@
 h1 {
     text-align: center;
 }
+
+#x-false {
+    color: red;
+}
+
+#check {
+    color: rgb(6, 199, 6);
+}

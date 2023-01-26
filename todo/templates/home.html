@@ -14,7 +14,7 @@
         <br>
         <h1>Tarefas a fazer</h1>
         <hr>
-        <a href="#" class="btn btn-success">Criar Tarefa</a>
+        <a href="{% url 'criar_tarefa' %}" class="btn btn-success">Criar Tarefa</a>
         <a href="#" class="btn btn-primary">Acessar API</a>
         <br>
         <table class="table table-striped" id="table-todo">
@@ -30,24 +30,27 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <!--Fazer um For para colocar os dados aqui-->
-                <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
-                </tr>
-                <tr>
-                    <th scope="row">3</th>
-                    <td colspan="2">Larry the Bird</td>
-                    <td>@twitter</td>
-                </tr>
+                {% for tarefa in tarefas %}
+                    <tr>
+                    <th scope="row">{{tarefa.id}}</th>
+                        <td>{{tarefa.nome}}</td>
+                        <td>{{tarefa.data}}</td>
+                        {% if tarefa.esta_feita == False %}
+                            <td><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
+                                <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z" id="x-false"/>
+                              </svg>
+                            </td>
+                        {% else %}
+                            <td><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-check2" viewBox="0 0 16 16">
+                                <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z" id="check"/>
+                              </svg>
+                            </td>
+                        {% endif %}
+                        <td><a href="#" class="btn btn-warning">Detalhes</a></td>
+                        <td><a href="#" class="btn btn-primary">Atualizar</a></td>
+                        <td><a href="#" class="btn btn-danger">Excluir</a></td>
+                    </tr>
+                {% endfor %}
             </tbody>
           </table>
     </div>
