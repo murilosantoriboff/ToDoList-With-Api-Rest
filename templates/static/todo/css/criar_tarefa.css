@@ -2,3 +2,7 @@ h1 {
     text-align: center;
 }
 
+#check-task {
+    width: 18px;
+    height: 18px;
+}

@@ -14,9 +14,27 @@
         <br>
         <h1>Criar Tarefa</h1>
         <hr>
-        <form action="{% url 'criar_tarefa' %}">
+        {% if messages %}
+        <ul>
+            {% for message in messages %}
+                <li {% if message.tags %} class="alert {{message.tags}}" {% endif %}>{{message}}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        <form action="{% url 'criar_tarefa' %}" method="POST">
             {% csrf_token %}
-            
+            <p>
+                <label>Nome:</label>
+                <input type="text" name="nome_tarefa" class="form-control">
+            </p>
+            <p>
+                <label>Data:</label>
+                <input type="date" name="data_tarefa" class="form-control">
+            </p>
+            <p>
+                <label>Feita?</label>
+                <input type="checkbox" name="feita_tarefa" id="check-task">
+            </p>
             <br>
             <input type="submit" value="Criar Tarefa" class="btn btn-success">
         </form>
