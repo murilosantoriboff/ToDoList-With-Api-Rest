@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block titulo %}
+    Detalhes
+{% endblock %}
+
+{% block content_body %}
+    <div class="container">
+        <br>
+        <h1 style="text-align: center;">Detalhes da tarefa: {{tarefa.nome}}</h1>
+        <hr>
+        <form>
+            <p>
+                <label>Nome:</label>
+                <p class="form-control">{{tarefa.nome}}</p>
+            </p>
+            <p>
+                <label>Data:</label>
+                <p class="form-control">{{tarefa.data}}</p>
+            </p>
+            <p>
+                <label>Feita?</label>
+                {% if tarefa.esta_feita == False %}
+                    <p class="form-control">Não</p>
+                {% else %}
+                    <p class="form-control">Sim</p>
+                {% endif %}
+            </p>
+        </form>
+    </div>
+{% endblock %}

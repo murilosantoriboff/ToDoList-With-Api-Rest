@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from .models import Tarefa
@@ -31,4 +31,11 @@ def criar_tarefa(request):
             messages.add_message(request, messages.constants.SUCCESS, 'Tarefa Criada com sucesso')
             return redirect('/todo_list/home/')
 
-# Fazer a 'detalhes'
+@login_required(login_url='/auth/login/')
+def detalhes_tarefa(request, id):
+    tarefa = get_object_or_404(Tarefa, pk=id)
+    return render(request, 'detalhes_tarefa.html', {'tarefa':tarefa})
+
+@login_required(login_url='/auth/login/')
+def excluir_tarefa(request, id):
+    pass
