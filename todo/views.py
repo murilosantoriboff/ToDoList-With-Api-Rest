@@ -38,4 +38,9 @@ def detalhes_tarefa(request, id):
 
 @login_required(login_url='/auth/login/')
 def excluir_tarefa(request, id):
-    pass
+    tarefa = Tarefa.objects.get(id=id)
+    tarefa.delete()
+    messages.add_message(request, messages.constants.SUCCESS, 'Tarefa Excluida com Sucesso')
+    return redirect('/todo_list/home/')
+
+# Atualizar Tarefa
