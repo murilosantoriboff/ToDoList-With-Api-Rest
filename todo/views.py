@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from .models import Tarefa
 from django.contrib import messages
+from datetime import date
 
 @login_required(login_url='/auth/login/')
 def home(request):
@@ -43,4 +44,26 @@ def excluir_tarefa(request, id):
     messages.add_message(request, messages.constants.SUCCESS, 'Tarefa Excluida com Sucesso')
     return redirect('/todo_list/home/')
 
-# Atualizar Tarefa
+@login_required(login_url='/auth/login/')
+def atualizar_tarefa(request, id):
+    if request.method == 'GET':
+        tarefa = get_object_or_404(Tarefa, pk=id)
+        return render(request, 'atualizar.html', {'tarefa':tarefa})
+    elif request.method == 'POST':
+        tarefa = Tarefa.objects.get(id=id)
+        nome = request.POST.get('nome_tarefa')
+        data = request.POST.get('data_tarefa')
+        feita = request.POST.get('feita_tarefa')
+        if feita == None:
+            feita = 0
+        else:
+            feita = 1
+
+        if data == "":
+            data = date.today()
+        tarefa.nome = nome
+        tarefa.data = data
+        tarefa.esta_feita = feita
+        tarefa.save()
+        return redirect('/todo_list/home/')
+        

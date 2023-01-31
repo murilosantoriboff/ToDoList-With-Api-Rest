@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block titulo %}
+Atualizar
+{% endblock %}
+
+{% block content_body %}
+    <div class="container">
+        <br>
+        <h1 style="text-align: center;">Atualizar</h1>
+        <hr>
+        <form action="{% url 'atualizar_tarefa' tarefa.id %}" method="POST">
+            {% csrf_token %}
+            <p>
+                <label>Nome:</label>
+                <input type="text" name="nome_tarefa" class="form-control" value="{{tarefa.nome}}">
+            </p>
+            <p>
+                <label>Data:</label>
+                <input type="date" name="data_tarefa" class="form-control" value="{{tarefa.data}}">
+            </p>
+            <p>
+                <label>Feita?</label>
+                {% if tarefa.esta_feita == True %}
+                    <input type="checkbox" name="feita_tarefa" id="check-task" checked>
+                {% else %}
+                    <input type="checkbox" name="feita_tarefa" id="check-task">
+                {% endif %}
+            </p>
+            <br>
+            <input type="submit" value="Atualizar Tarefa" class="btn btn-success">
+        </form>
+    </div>
+{% endblock %}

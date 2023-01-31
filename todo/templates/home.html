@@ -54,7 +54,7 @@
                             </td>
                         {% endif %}
                         <td><a href="{% url 'detalhes_tarefa' tarefa.id %}" class="btn btn-warning">Detalhes</a></td>
-                        <td><a href="#" class="btn btn-primary">Atualizar</a></td>
+                        <td><a href="{% url 'atualizar_tarefa' tarefa.id %}" class="btn btn-primary">Atualizar</a></td>
                         <td><a href="{% url 'excluir_tarefa' tarefa.id %}" class="btn btn-danger">Excluir</a></td>
                     </tr>
                 {% endfor %}
